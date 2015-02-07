@@ -25,10 +25,10 @@ namespace Dactylography
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // stavio sam masked da se mozda onemoguci drugo osim slova, ali nisam se bas poigrao s tim
             string _letters = maskedTextBox1.Text.ToUpper();
 
             HashSet<string> letters = new HashSet<string>();
-
             foreach (char c in _letters.ToCharArray())
             {
                 if ((Char.IsLetter(c) || c == 'Š' || c == 'Đ' || c == 'Č' || c == 'Ć' || c == 'Ž'))
@@ -76,6 +76,7 @@ namespace Dactylography
                 if (sb.MaxCapacity - sb.Length < minWordLength)
                 {
                     // popuni s prazninama jer je premalo za rijec
+                    // TODO mozda se ovo da nekako pametnije
                     for (int i = 0; i < sb.MaxCapacity - sb.Length; i++)
                     {
                         sb.Append(" ");
@@ -83,6 +84,7 @@ namespace Dactylography
                     break;
                 }
                 
+                // inace odredi duljinu iduce rijeci
                 int max = Math.Min(maxWordLength, sb.MaxCapacity-sb.Length);
                 wordLength = rnd.Next(minWordLength, max + 1);
 
@@ -91,13 +93,12 @@ namespace Dactylography
                     sb.Append(letters.ElementAt(rnd.Next(0, letters.Count)));
                 }
 
+                // ako nisi dosao do kraja stavi razmak za iducu rijec
                 if (sb.Length < sb.MaxCapacity)
                 {
                     sb.Append(" ");
                 }
             }
-
-            //MessageBox.Show("len = " + sb.Length + "; " + sb.ToString());
 
             if (save)
             {

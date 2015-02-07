@@ -12,11 +12,24 @@ namespace Dactylography
 {
     public partial class Text : RichTextBox
     {
-
+        /* text koji terba natipkati */
         private string text;
 
         Font font = new Font(FontFamily.GenericMonospace, 16.0f, FontStyle.Bold);
         Font underlined_font = new Font(FontFamily.GenericMonospace, 16.0f, FontStyle.Bold | FontStyle.Underline);
+
+        /* words[0] - pretipkani dio teksta
+         * words[1] - slovo koje treba pritisniti
+         * words[2] - dio teksta koji tek treba natipkati */
+        private StringBuilder[] words = new StringBuilder[3];
+
+        /* boje koje odgovaraju words arrayu */
+        private Color[] colors = 
+        {
+		    Color.LightGray,
+		    Color.Black,
+		    Color.DarkGray
+	    };
 
         public string Txt
         {
@@ -37,14 +50,6 @@ namespace Dactylography
                 printText();
             }
         }
-
-        private StringBuilder[] words = new StringBuilder[3];
-        private Color[] colors = 
-        {
-		    Color.LightGray,
-		    Color.Black,
-		    Color.DarkGray
-	    };
 	    
         public Text()
         {
@@ -57,7 +62,9 @@ namespace Dactylography
             // ako je fake, onda ne broji u statistiku, tj onda nije korisnik stisnuo
             // nego je simulirano
             // TODO
-            if (words[1].Length == 1 && key.CompareTo(words[1].ToString()) == 0)
+
+            // ako je stisuta prava tipka
+            if (words[1].Length == 1 && key.CompareTo(current()) == 0)
             {
                 words[0].Append(words[1][0]);
                 words[1].Clear();
@@ -82,16 +89,7 @@ namespace Dactylography
             return words[1].ToString();
         }
 
-        public void moveToNext()
-        {
-            words[0].Append(words[1][0]);
-            words[1].Clear();
-            words[1].Append(words[2][0]);
-            words[2].Remove(0, 1);
-        }
-
-
-
+        // Ispisuje tekst
         public void printText()
         {
             this.Clear();

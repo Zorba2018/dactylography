@@ -48,8 +48,11 @@ namespace Dactylography
             RefreshForm();
         }
 
+        /* Sluzi za "refreshanje" forme u smislu da se ucitaju potencijalno nove postavke
+           i da se sukladno njima forma promijeni. */
         public void RefreshForm()
         {
+            // zelimo li vidjeti iducu tipku
             if (PreviewKey)
             {
                 keyboard1.getKey(text1.current()).BackColor = Color.Red;
@@ -59,6 +62,8 @@ namespace Dactylography
                 keyboard1.getKey(text1.current()).BackColor = SystemColors.Control;
                 keyboard1.getKey(text1.current()).UseVisualStyleBackColor = true;
             }
+
+            // zelimo li vidjeti iduci prst
             if (previewFinger)
             {
                 keyboard1.FingerKey = keyboard1.getKey(text1.current());
@@ -83,25 +88,36 @@ namespace Dactylography
             Key key = keyboard1.getKey(keyCodeToString(e));
             if (key != null)
             {
+                // ovako je napisano da mogu pozvati istu metodu kasnije
+                // vidi dolje
                 keyUp(key, false);
             }
         }
 
+        /* key - tipka koja je stisnuta
+         * fake - true ako "simuliramo", false ako je korisnik stvarno stisnuo tipku
+         * 
+         * "simulirati" cemo onda kada korisnik ne zeli cekati na krivo pritisnutu tipku - u tom slucaju
+         * cemo mi "pritisnuti" pravu tipku a efektive ce se sve pomaknuti na iduce slovo
+         */
         private void keyUp(Key key, bool fake)
         {
+            // vracanje u defaultnu boju
             key.BackColor = SystemColors.Control;
             key.UseVisualStyleBackColor = true;
+
             String status = text1.keyPressed(key.Text, false);
             if (status.CompareTo("DONE") == 0)
             {
                 keyboard1.FingerKey = null;
-                // zelim da se prije izbrise sve pa da ispisem poruku.
-                MessageBox.Show("Svaka čast!");
+                MessageBox.Show("Svaka čast!"); 
+                // TODO statistika
             }
             else if (status.CompareTo("WRONG") == 0)
             {
                 if (Wait == false)
                 {
+                    // simuliranje pritiska "prave tipke"
                     keyUp(keyboard1.getKey(text1.current()), true);
                 }
             }
@@ -118,6 +134,7 @@ namespace Dactylography
             }
         }
 
+        /* Pretvara KeyCode u String */
         private string keyCodeToString(KeyEventArgs e)
         {
             KeysConverter kc = new KeysConverter();
