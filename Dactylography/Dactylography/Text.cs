@@ -34,6 +34,7 @@ namespace Dactylography
 
                 words[1].Append(words[2][0]);
                 words[2].Remove(0, 1);
+                printText();
             }
         }
 
@@ -51,8 +52,11 @@ namespace Dactylography
             this.Enabled = false;
         }
 
-        public string keyPressed(string key)
+        public string keyPressed(string key, bool fake)
         {
+            // ako je fake, onda ne broji u statistiku, tj onda nije korisnik stisnuo
+            // nego je simulirano
+            // TODO
             if (words[1].Length == 1 && key.CompareTo(words[1].ToString()) == 0)
             {
                 words[0].Append(words[1][0]);
@@ -70,8 +74,23 @@ namespace Dactylography
                     return "DONE";
                 }
             }
-            return null;
+            return "WRONG";
         }
+
+        public String current()
+        {
+            return words[1].ToString();
+        }
+
+        public void moveToNext()
+        {
+            words[0].Append(words[1][0]);
+            words[1].Clear();
+            words[1].Append(words[2][0]);
+            words[2].Remove(0, 1);
+        }
+
+
 
         public void printText()
         {

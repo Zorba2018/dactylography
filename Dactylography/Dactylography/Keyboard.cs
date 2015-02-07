@@ -23,7 +23,13 @@ namespace Dactylography
         private int[] keys_y_starts = { 33, 62, 91, 120 };
 
         private int mark_radius = 10;
-        public Key fingerKey { get; set; }
+        private Key fingerKey;
+    
+        public Key FingerKey
+        { 
+            get { return fingerKey; }
+            set { fingerKey = value; this.Invalidate(); }
+        }
 
         public Keyboard()
         {

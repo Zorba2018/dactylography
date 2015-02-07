@@ -12,18 +12,61 @@ namespace Dactylography
 {
     public partial class Form1 : Form
     {
+
+        private bool previewKey;
+        public bool PreviewKey 
+        {
+            get { return previewKey; } 
+            set { previewKey = value; RefreshForm(); } 
+        }
+
+        private bool previewFinger;
+        public bool PreviewFinger 
+        {
+            get { return previewFinger; }
+            set { previewFinger = value; RefreshForm(); }   
+        }
+
+        private bool wait;
+        public bool Wait {
+            get { return wait; }
+            set { wait = value; RefreshForm(); } 
+        }
+
         public Form1()
         {
             InitializeComponent();
 
-            string txt = "qwertzuiopšđasdfghjklčćžyxcvbnm".ToUpper();
+            previewKey = true;
+            previewFinger = true;
+            wait = true;
+        }
 
+        public void setText(string txt)
+        {
             text1.Txt = txt;
-            keyboard1.fingerKey = keyboard1.getKey(txt.ElementAt(0).ToString());
-            keyboard1.getKey(txt.ElementAt(0).ToString()).BackColor = Color.Red;
+            RefreshForm();
+        }
 
-            text1.printText();
-
+        public void RefreshForm()
+        {
+            if (PreviewKey)
+            {
+                keyboard1.getKey(text1.current()).BackColor = Color.Red;
+            }
+            else
+            {
+                keyboard1.getKey(text1.current()).BackColor = SystemColors.Control;
+                keyboard1.getKey(text1.current()).UseVisualStyleBackColor = true;
+            }
+            if (previewFinger)
+            {
+                keyboard1.FingerKey = keyboard1.getKey(text1.current());
+            }
+            else
+            {
+                keyboard1.FingerKey = null;
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -40,24 +83,37 @@ namespace Dactylography
             Key key = keyboard1.getKey(keyCodeToString(e));
             if (key != null)
             {
-                key.BackColor = SystemColors.Control;
-                key.UseVisualStyleBackColor = true;
-                String current = text1.keyPressed(key.Text);
-                if (current != null)
+                keyUp(key, false);
+            }
+        }
+
+        private void keyUp(Key key, bool fake)
+        {
+            key.BackColor = SystemColors.Control;
+            key.UseVisualStyleBackColor = true;
+            String status = text1.keyPressed(key.Text, false);
+            if (status.CompareTo("DONE") == 0)
+            {
+                keyboard1.FingerKey = null;
+                // zelim da se prije izbrise sve pa da ispisem poruku.
+                MessageBox.Show("Svaka čast!");
+            }
+            else if (status.CompareTo("WRONG") == 0)
+            {
+                if (Wait == false)
                 {
-                    if (current.CompareTo("DONE") == 0)
-                    {
-                        keyboard1.fingerKey = null;
-                        keyboard1.Invalidate();
-                        // zelim da se prije izbrise sve pa da ispisem poruku.
-                        MessageBox.Show("Svaka čast!");
-                    }
-                    else
-                    {
-                        keyboard1.fingerKey = keyboard1.getKey(current);
-                        keyboard1.getKey(current).BackColor = Color.Red;
-                        keyboard1.Invalidate();
-                    }
+                    keyUp(keyboard1.getKey(text1.current()), true);
+                }
+            }
+            else
+            {
+                if (previewFinger)
+                {
+                    keyboard1.FingerKey = keyboard1.getKey(status);
+                }
+                if (PreviewKey)
+                {
+                    keyboard1.getKey(status).BackColor = Color.Red;
                 }
             }
         }
@@ -79,6 +135,23 @@ namespace Dactylography
             }
         }
 
+        private void izlazToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void krairajVježbuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCreateExc f = new FormCreateExc(this);
+            f.ShowDialog();
+        }
+
+        private void postavkeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSettings f = new FormSettings(this);
+            f.ShowDialog();
+        }
+        
 
     }
 }
