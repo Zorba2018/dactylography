@@ -13,10 +13,11 @@ namespace Dactylography
     public partial class Text : RichTextBox
     {
         /* text koji terba natipkati */
-        private string text;
+        private static Exercise exer = new Exercise();
+        //private string text;
 
-        Font font = new Font(FontFamily.GenericMonospace, 16.0f, FontStyle.Bold);
-        Font underlined_font = new Font(FontFamily.GenericMonospace, 16.0f, FontStyle.Bold | FontStyle.Underline);
+        private Font font = new Font(FontFamily.GenericMonospace, 16.0f, FontStyle.Bold);
+        private Font underlined_font = new Font(FontFamily.GenericMonospace, 16.0f, FontStyle.Bold | FontStyle.Underline);
 
         /* words[0] - pretipkani dio teksta
          * words[1] - slovo koje treba pritisniti
@@ -33,21 +34,22 @@ namespace Dactylography
 
         public string Txt
         {
-            get { return text; }
+            get { return exer.text; }
             set
             {
                 if (value == null)
                 {
                     return;
                 }
-                text = value.ToUpper();
+                exer.text = value.ToUpper();
                 words[0] = new StringBuilder();
                 words[1] = new StringBuilder();
-                words[2] = new StringBuilder(text);
+                words[2] = new StringBuilder(exer.text);
 
                 words[1].Append(words[2][0]);
                 words[2].Remove(0, 1);
                 printText();
+
             }
         }
 	    

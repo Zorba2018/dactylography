@@ -12,27 +12,17 @@ namespace Dactylography
 {
     public partial class Key : Button
     {
-        public enum Hand { Left, Right };
+        public Finger finger {get; set; }
 
-        internal Hand hand { get; set; }
-
-        internal int finger { get; set; }
-
-
-        public Key(Hand hand, int finger)
+        public Key(Finger finger)
         {
             InitializeComponent();
 
             this.Enabled = false;
             this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-           // this.ForeColor = Color.Black;
 
-            this.hand = hand;
             this.finger = finger;
         }
-
-        
-
 
     }
 }

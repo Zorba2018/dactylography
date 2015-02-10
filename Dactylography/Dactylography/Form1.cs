@@ -40,12 +40,27 @@ namespace Dactylography
             previewKey = true;
             previewFinger = true;
             wait = true;
+
+            toolStrip1.ShowItemToolTips = false;
         }
 
         public void setText(string txt)
         {
+            if (text1.Txt != null)
+            {
+                ClearForm();
+            }
             text1.Txt = txt;
             RefreshForm();
+        }
+
+        public void ClearForm()
+        {
+            // mice oznaku iduce tipke
+            keyboard1.getKey(text1.current()).BackColor = SystemColors.Control;
+            keyboard1.getKey(text1.current()).UseVisualStyleBackColor = true;
+            // mice oznaku prsta
+            keyboard1.FingerKey = null;
         }
 
         /* Sluzi za "refreshanje" forme u smislu da se ucitaju potencijalno nove postavke
@@ -66,7 +81,7 @@ namespace Dactylography
             // zelimo li vidjeti iduci prst
             if (previewFinger)
             {
-                keyboard1.FingerKey = keyboard1.getKey(text1.current());
+                keyboard1.FingerKey = keyboard1.getKey(text1.current()).finger;
             }
             else
             {
@@ -76,21 +91,27 @@ namespace Dactylography
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            Key key = keyboard1.getKey(keyCodeToString(e));
-            if (key != null)
+            if (text1.Txt != null)
             {
-                key.BackColor = Color.DarkGray;
+                Key key = keyboard1.getKey(keyCodeToString(e));
+                if (key != null)
+                {
+                    key.BackColor = Color.DarkGray;
+                }
             }
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            Key key = keyboard1.getKey(keyCodeToString(e));
-            if (key != null)
+            if (text1.Txt != null)
             {
-                // ovako je napisano da mogu pozvati istu metodu kasnije
-                // vidi dolje
-                keyUp(key, false);
+                Key key = keyboard1.getKey(keyCodeToString(e));
+                if (key != null)
+                {
+                    // ovako je napisano da mogu pozvati istu metodu kasnije
+                    // vidi dolje
+                    keyUp(key, false);
+                }
             }
         }
 
@@ -125,7 +146,7 @@ namespace Dactylography
             {
                 if (previewFinger)
                 {
-                    keyboard1.FingerKey = keyboard1.getKey(status);
+                    keyboard1.FingerKey = keyboard1.getKey(status).finger;
                 }
                 if (PreviewKey)
                 {
@@ -152,21 +173,32 @@ namespace Dactylography
             }
         }
 
-        private void izlazToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
 
-        private void krairajVježbuToolStripMenuItem_Click(object sender, EventArgs e)
+        private void createExerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCreateExc f = new FormCreateExc(this);
+            FormCreateExer f = new FormCreateExer(this);
             f.ShowDialog();
         }
 
-        private void postavkeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormSettings f = new FormSettings(this);
             f.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            text1.Location = new Point(0, keyboard1.Location.Y + keyboard1.Size.Height);
+            text1.Height = ClientSize.Height - text1.Location.Y;
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            text1.Height = ClientSize.Height - text1.Location.Y;
         }
         
 

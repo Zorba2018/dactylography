@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,17 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exercise.cs" />
+    <Compile Include="Finger.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCreateExc.cs">
+    <Compile Include="FormCreateExer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCreateExc.Designer.cs">
-      <DependentUpon>FormCreateExc.cs</DependentUpon>
+    <Compile Include="FormCreateExer.Designer.cs">
+      <DependentUpon>FormCreateExer.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSettings.cs">
       <SubType>Form</SubType>
@@ -85,8 +88,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCreateExc.resx">
-      <DependentUpon>FormCreateExc.cs</DependentUpon>
+    <EmbeddedResource Include="FormCreateExer.resx">
+      <DependentUpon>FormCreateExer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
@@ -99,6 +102,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Keyboard.resx">
       <DependentUpon>Keyboard.cs</DependentUpon>
@@ -115,6 +119,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\keyboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Exercises\Custom\" />
+    <Folder Include="Resources\Exercises\Easy\" />
+    <Folder Include="Resources\Exercises\Hard\" />
+    <Folder Include="Resources\Exercises\Moderate\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

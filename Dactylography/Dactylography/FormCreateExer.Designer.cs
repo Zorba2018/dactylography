@@ -1,6 +1,6 @@
 ﻿namespace Dactylography
 {
-    partial class FormCreateExc
+    partial class FormCreateExer
     {
         /// <summary>
         /// Required designer variable.

@@ -7,15 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Web.Script.Serialization;
 
 namespace Dactylography
 {
-    public partial class FormCreateExc : Form
+    public partial class FormCreateExer : Form
     {
 
         private Form1 f;
 
-        public FormCreateExc(Form1 f)
+        public FormCreateExer(Form1 f)
         {
             InitializeComponent();
             this.f = f;
@@ -62,31 +63,19 @@ namespace Dactylography
                 return;
             }
 
-            StringBuilder sb = new StringBuilder(excLength, excLength);
+            StringBuilder sb = new StringBuilder(excLength);
             Random rnd = new Random();
 
             int wordLength;
             while (true)
             {
-                if (sb.Length == sb.MaxCapacity)
+                if (sb.Length >= excLength)
                 {
-                    break;
-                }
-                // ako je manje od minimalne duljine
-                if (sb.MaxCapacity - sb.Length < minWordLength)
-                {
-                    // popuni s prazninama jer je premalo za rijec
-                    // TODO mozda se ovo da nekako pametnije
-                    for (int i = 0; i < sb.MaxCapacity - sb.Length; i++)
-                    {
-                        sb.Append(" ");
-                    }
                     break;
                 }
                 
-                // inace odredi duljinu iduce rijeci
-                int max = Math.Min(maxWordLength, sb.MaxCapacity-sb.Length);
-                wordLength = rnd.Next(minWordLength, max + 1);
+                // odredi duljinu iduce rijeci
+                wordLength = rnd.Next(minWordLength, maxWordLength + 1);
 
                 for (int i = 0; i < wordLength; i++)
                 {
@@ -94,7 +83,7 @@ namespace Dactylography
                 }
 
                 // ako nisi dosao do kraja stavi razmak za iducu rijec
-                if (sb.Length < sb.MaxCapacity)
+                if (sb.Length < excLength - 1)
                 {
                     sb.Append(" ");
                 }
@@ -102,6 +91,12 @@ namespace Dactylography
 
             if (save)
             {
+                Exercise exer = new Exercise();
+                exer.text = sb.ToString();
+                string json = new JavaScriptSerializer().Serialize(exer);
+
+
+                MessageBox.Show(json);
                 // TODO save file
             }
 

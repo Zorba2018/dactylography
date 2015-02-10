@@ -32,19 +32,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.učitajVježbuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.laganaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.srednjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.teškaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadExerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.easyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moderateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.vlastitaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.krairajVježbuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createExerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.izlazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.postavkeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.statistikaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.text1 = new Dactylography.Text();
             this.keyboard1 = new Dactylography.Keyboard();
             this.toolStrip1.SuspendLayout();
@@ -73,8 +73,8 @@
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.učitajVježbuToolStripMenuItem,
-            this.krairajVježbuToolStripMenuItem,
+            this.loadExerToolStripMenuItem,
+            this.createExerToolStripMenuItem,
             this.toolStripSeparator1,
             this.izlazToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
@@ -83,110 +83,110 @@
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(67, 22);
             this.toolStripDropDownButton1.Text = "Datoteka";
             // 
-            // učitajVježbuToolStripMenuItem
+            // loadExerToolStripMenuItem
             // 
-            this.učitajVježbuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.laganaToolStripMenuItem,
-            this.srednjaToolStripMenuItem,
-            this.teškaToolStripMenuItem,
+            this.loadExerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.easyToolStripMenuItem,
+            this.moderateToolStripMenuItem,
+            this.hardToolStripMenuItem,
             this.toolStripSeparator2,
-            this.vlastitaToolStripMenuItem});
-            this.učitajVježbuToolStripMenuItem.Name = "učitajVježbuToolStripMenuItem";
-            this.učitajVježbuToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.učitajVježbuToolStripMenuItem.Text = "Učitaj vježbu";
+            this.customToolStripMenuItem});
+            this.loadExerToolStripMenuItem.Name = "loadExerToolStripMenuItem";
+            this.loadExerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadExerToolStripMenuItem.Text = "Učitaj vježbu";
             // 
-            // laganaToolStripMenuItem
+            // easyToolStripMenuItem
             // 
-            this.laganaToolStripMenuItem.Name = "laganaToolStripMenuItem";
-            this.laganaToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.laganaToolStripMenuItem.Text = "Lagana";
+            this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
+            this.easyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.easyToolStripMenuItem.Text = "Lagana";
             // 
-            // srednjaToolStripMenuItem
+            // moderateToolStripMenuItem
             // 
-            this.srednjaToolStripMenuItem.Name = "srednjaToolStripMenuItem";
-            this.srednjaToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.srednjaToolStripMenuItem.Text = "Srednja";
+            this.moderateToolStripMenuItem.Name = "moderateToolStripMenuItem";
+            this.moderateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moderateToolStripMenuItem.Text = "Srednja";
             // 
-            // teškaToolStripMenuItem
+            // hardToolStripMenuItem
             // 
-            this.teškaToolStripMenuItem.Name = "teškaToolStripMenuItem";
-            this.teškaToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.teškaToolStripMenuItem.Text = "Teška";
+            this.hardToolStripMenuItem.Name = "hardToolStripMenuItem";
+            this.hardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hardToolStripMenuItem.Text = "Teška";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(110, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
-            // vlastitaToolStripMenuItem
+            // customToolStripMenuItem
             // 
-            this.vlastitaToolStripMenuItem.Name = "vlastitaToolStripMenuItem";
-            this.vlastitaToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.vlastitaToolStripMenuItem.Text = "Vlastita";
+            this.customToolStripMenuItem.Name = "customToolStripMenuItem";
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customToolStripMenuItem.Text = "Vlastita";
             // 
-            // krairajVježbuToolStripMenuItem
+            // createExerToolStripMenuItem
             // 
-            this.krairajVježbuToolStripMenuItem.Name = "krairajVježbuToolStripMenuItem";
-            this.krairajVježbuToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.krairajVježbuToolStripMenuItem.Text = "Kreiraj vježbu";
-            this.krairajVježbuToolStripMenuItem.Click += new System.EventHandler(this.krairajVježbuToolStripMenuItem_Click);
+            this.createExerToolStripMenuItem.Name = "createExerToolStripMenuItem";
+            this.createExerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createExerToolStripMenuItem.Text = "Kreiraj vježbu";
+            this.createExerToolStripMenuItem.Click += new System.EventHandler(this.createExerToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // izlazToolStripMenuItem
             // 
             this.izlazToolStripMenuItem.Name = "izlazToolStripMenuItem";
-            this.izlazToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.izlazToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.izlazToolStripMenuItem.Text = "Izlaz";
-            this.izlazToolStripMenuItem.Click += new System.EventHandler(this.izlazToolStripMenuItem_Click);
+            this.izlazToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolStripDropDownButton2
             // 
             this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.postavkeToolStripMenuItem,
+            this.settingsToolStripMenuItem,
             this.toolStripSeparator3,
-            this.statistikaToolStripMenuItem});
+            this.statsToolStripMenuItem});
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
             this.toolStripDropDownButton2.Size = new System.Drawing.Size(44, 22);
             this.toolStripDropDownButton2.Text = "Alati";
             // 
-            // postavkeToolStripMenuItem
+            // settingsToolStripMenuItem
             // 
-            this.postavkeToolStripMenuItem.Name = "postavkeToolStripMenuItem";
-            this.postavkeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.postavkeToolStripMenuItem.Text = "Postavke";
-            this.postavkeToolStripMenuItem.Click += new System.EventHandler(this.postavkeToolStripMenuItem_Click);
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Text = "Postavke";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
-            // statistikaToolStripMenuItem
+            // statsToolStripMenuItem
             // 
-            this.statistikaToolStripMenuItem.Name = "statistikaToolStripMenuItem";
-            this.statistikaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.statistikaToolStripMenuItem.Text = "Statistika";
+            this.statsToolStripMenuItem.Name = "statsToolStripMenuItem";
+            this.statsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statsToolStripMenuItem.Text = "Statistika";
             // 
             // text1
             // 
             this.text1.Enabled = false;
             this.text1.Location = new System.Drawing.Point(0, 188);
             this.text1.Name = "text1";
-            this.text1.Size = new System.Drawing.Size(733, 148);
+            this.text1.Size = new System.Drawing.Size(734, 148);
             this.text1.TabIndex = 2;
             this.text1.Text = "";
             this.text1.Txt = null;
             // 
             // keyboard1
             // 
-            this.keyboard1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("keyboard1.BackgroundImage")));
+            this.keyboard1.BackgroundImage = global::Dactylography.Properties.Resources.keyboard;
             this.keyboard1.FingerKey = null;
             this.keyboard1.Location = new System.Drawing.Point(0, 28);
             this.keyboard1.Name = "keyboard1";
@@ -197,16 +197,20 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 339);
+            this.ClientSize = new System.Drawing.Size(734, 361);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.text1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.keyboard1);
             this.KeyPreview = true;
+            this.MaximumSize = new System.Drawing.Size(750, 1000);
+            this.MinimumSize = new System.Drawing.Size(750, 400);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -221,18 +225,18 @@
         private Text text1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem učitajVježbuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem laganaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem srednjaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem teškaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadExerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem easyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem moderateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hardToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem vlastitaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem krairajVježbuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createExerToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem izlazToolStripMenuItem;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
-        private System.Windows.Forms.ToolStripMenuItem postavkeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem statistikaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem statsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 
     }

@@ -23,9 +23,9 @@ namespace Dactylography
         private int[] keys_y_starts = { 33, 62, 91, 120 };
 
         private int mark_radius = 10;
-        private Key fingerKey;
-    
-        public Key FingerKey
+        
+        private Finger fingerKey;
+        public Finger FingerKey
         { 
             get { return fingerKey; }
             set { fingerKey = value; this.Invalidate(); }
@@ -44,29 +44,7 @@ namespace Dactylography
             {
                 for (int j = 0; j < alphabet[i].Length; j++)
                 {
-                    Key.Hand hand = ( j<=4 ? Key.Hand.Left : Key.Hand.Right);
-                    int finger;
-                    if (hand == Key.Hand.Left)
-                    {
-                        finger = (j < 4 ? 4 - j + 1 : 2);
-                    }
-                    else
-                    {
-                        if (j <= 6)
-                        {
-                            finger = 2;
-                        } else if (j >= 10)
-                        {
-                            finger = 5;   
-                        } else 
-                        {
-                            finger = j-4;      
-                        }
-                    }
-
-
-
-                    Key key = new Key(hand, finger);
+                    Key key = new Key(getFinger(i, j));
                     key.Text = alphabet[i][j];
                     key.Location = new Point(keys_x_starts[i] + (keys_size + keys_spacing) * j,
                         keys_y_starts[i]);
@@ -89,6 +67,38 @@ namespace Dactylography
             this.Controls.AddRange(keys.Values.ToArray());
         }
 
+        // i = row, j = column
+        private Finger getFinger(int i, int j)
+        {
+            if (i == 3)
+            {
+                // space
+                return new Finger(1, Finger.Hand.Left);
+            }
+            Finger.Hand hand = (j <= 4 ? Finger.Hand.Left : Finger.Hand.Right);
+            int digit;
+            if (hand == Finger.Hand.Left)
+            {
+                digit = (j < 4 ? 4 - j + 1 : 2);
+            }
+            else
+            {
+                if (j <= 6)
+                {
+                    digit = 2;
+                }
+                else if (j >= 10)
+                {
+                    digit = 5;
+                }
+                else
+                {
+                    digit = j - 4;
+                }
+            }
+            return new Finger(digit, hand);
+        }
+
         public Key getKey(string key)
         {
             if (keys.ContainsKey(key))
@@ -105,70 +115,10 @@ namespace Dactylography
             if (fingerKey != null)
             {
                 System.Drawing.Graphics graphicsObj = this.CreateGraphics();
-                Pen myPen = new Pen(System.Drawing.Color.Red, 2);
-                Rectangle myRectangle = new Rectangle(getX(fingerKey) - mark_radius, getY(fingerKey) - mark_radius, 2 * mark_radius, 2 * mark_radius);
-                graphicsObj.DrawEllipse(myPen, myRectangle);
+                Rectangle myRectangle = new Rectangle(fingerKey.Point.X - mark_radius, fingerKey.Point.Y - mark_radius, 2 * mark_radius, 2 * mark_radius);
+                graphicsObj.DrawEllipse(new Pen(System.Drawing.Color.Red, 2), myRectangle);
             }
         }
-
-        int getX(Key key)
-        {
-            if (key.hand == Key.Hand.Left)
-            {
-                switch (key.finger)
-                {
-                    case 1: return 113;
-                    case 2: return 56;
-                    case 3: return 35;
-                    case 4: return 20;
-                    case 5: return 13;
-                    default: throw new Exception();
-                }
-
-            }
-            else
-            {
-                switch (key.finger)
-                {
-                    case 1: return 612;
-                    case 2: return 668;
-                    case 3: return 689;
-                    case 4: return 704;
-                    case 5: return 712;
-                    default: throw new Exception();
-                }
-            }
-        }
-
-        int getY(Key key)
-        {
-            if (key.hand == Key.Hand.Left)
-            {
-                switch (key.finger)
-                {
-                    case 1: return 85;
-                    case 2: return 40;
-                    case 3: return 41;
-                    case 4: return 60;
-                    case 5: return 92;
-                    default: throw new Exception();
-                }
-
-            }
-            else
-            {
-                switch (key.finger)
-                {
-                    case 1: return 85;
-                    case 2: return 40;
-                    case 3: return 42;
-                    case 4: return 60;
-                    case 5: return 91;
-                    default: throw new Exception();
-                }
-            }
-        }
-
 
     }
 }
