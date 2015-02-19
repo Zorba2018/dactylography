@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Dactylography
 {
+    [Serializable]
     public class Exercise
     {
         public string text { get; set; }
-        public string highScore { get; set; }
-        public string lastScore { get; set; }
+        public Statistics highScore { get; set; }
+        public Statistics lastScore { get; set; }
     }
 }

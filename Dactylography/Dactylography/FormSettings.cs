@@ -36,8 +36,15 @@ namespace Dactylography
         private void button1_Click(object sender, EventArgs e)
         {
             f.PreviewKey = cbPreviewKey.Checked;
+            Properties.Settings.Default.previewKey = f.PreviewKey;
+            //update both the currently loaded setting, and the application setting
+
             f.PreviewFinger = cbPreviewFinger.Checked;
+            Properties.Settings.Default.previewFinger = f.PreviewFinger;
+
             f.Wait = rbWait.Checked;
+            Properties.Settings.Default.wait = f.Wait;
+
             f.RefreshForm();
 
             this.Dispose();

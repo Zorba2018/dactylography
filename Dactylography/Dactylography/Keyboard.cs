@@ -101,11 +101,12 @@ namespace Dactylography
 
         public Key getKey(string key)
         {
-            if (keys.ContainsKey(key))
+            if (keys == null || key == null) return null; //mogu li keys biti null?
+            else if (keys.ContainsKey(key))
             {
                 return keys[key];
             }
-            return null;
+            else return null;
         }
 
         protected override void OnPaint(PaintEventArgs e)

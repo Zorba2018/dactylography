@@ -79,6 +79,7 @@
     <Compile Include="Keyboard.Designer.cs">
       <DependentUpon>Keyboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Statistics.cs" />
     <Compile Include="Text.cs">
       <SubType>Component</SubType>
     </Compile>

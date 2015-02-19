@@ -14,32 +14,33 @@ namespace Dactylography
     {
 
         private bool previewKey;
-        public bool PreviewKey 
+        public bool PreviewKey
         {
-            get { return previewKey; } 
-            set { previewKey = value; RefreshForm(); } 
+            get { return previewKey; }
+            set { previewKey = value; RefreshForm(); }
         }
 
         private bool previewFinger;
-        public bool PreviewFinger 
+        public bool PreviewFinger
         {
             get { return previewFinger; }
-            set { previewFinger = value; RefreshForm(); }   
+            set { previewFinger = value; RefreshForm(); }
         }
 
         private bool wait;
-        public bool Wait {
+        public bool Wait
+        {
             get { return wait; }
-            set { wait = value; RefreshForm(); } 
+            set { wait = value; RefreshForm(); }
         }
 
         public Form1()
         {
             InitializeComponent();
 
-            previewKey = true;
-            previewFinger = true;
-            wait = true;
+            previewKey = Properties.Settings.Default.previewKey;
+            previewFinger = Properties.Settings.Default.previewFinger;
+            wait = Properties.Settings.Default.wait;
 
             toolStrip1.ShowItemToolTips = false;
         }
@@ -67,10 +68,13 @@ namespace Dactylography
            i da se sukladno njima forma promijeni. */
         public void RefreshForm()
         {
+            // ne radi kad nije inicijalizirano, a postavke se promjene
             // zelimo li vidjeti iducu tipku
-            if (PreviewKey)
+            if (keyboard1.getKey(text1.current()) == null) { return; } // ako je sve nula, ingoriraj
+            // koristim zato što se postavke mogu mijenjati i kad nije inicijalizirano
+            else if (PreviewKey)
             {
-                keyboard1.getKey(text1.current()).BackColor = Color.Red;
+                keyboard1.getKey(text1.current()).BackColor = Color.LightBlue;
             }
             else
             {
@@ -121,17 +125,21 @@ namespace Dactylography
          * "simulirati" cemo onda kada korisnik ne zeli cekati na krivo pritisnutu tipku - u tom slucaju
          * cemo mi "pritisnuti" pravu tipku a efektive ce se sve pomaknuti na iduce slovo
          */
+
+        // kako je trenutno napravljeno, ne možemo označiti slova koja su krivo pritisnuta
+        // želimo li to uopće?
+
         private void keyUp(Key key, bool fake)
         {
-            // vracanje u defaultnu boju
-            key.BackColor = SystemColors.Control;
+             // vracanje u defaultnu boju ako ne prelazimo preko tipke
+            key.BackColor = SystemColors.Control;            
             key.UseVisualStyleBackColor = true;
 
-            String status = text1.keyPressed(key.Text, false);
+            String status = text1.keyPressed(key.Text, fake); //tu treba slati fake
             if (status.CompareTo("DONE") == 0)
             {
                 keyboard1.FingerKey = null;
-                MessageBox.Show("Svaka čast!"); 
+                MessageBox.Show("Svaka čast!");
                 // TODO statistika
             }
             else if (status.CompareTo("WRONG") == 0)
@@ -150,7 +158,7 @@ namespace Dactylography
                 }
                 if (PreviewKey)
                 {
-                    keyboard1.getKey(status).BackColor = Color.Red;
+                    keyboard1.getKey(status).BackColor = Color.LightBlue;
                 }
             }
         }
@@ -200,7 +208,7 @@ namespace Dactylography
         {
             text1.Height = ClientSize.Height - text1.Location.Y;
         }
-        
+
 
     }
 }

@@ -88,6 +88,7 @@ namespace Dactylography
 
         public String current()
         {
+            if (words[1] == null) return null;
             return words[1].ToString();
         }
 
