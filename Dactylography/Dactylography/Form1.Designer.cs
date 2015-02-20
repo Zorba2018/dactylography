@@ -45,6 +45,7 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.statsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.text1 = new Dactylography.Text();
             this.keyboard1 = new Dactylography.Keyboard();
             this.toolStrip1.SuspendLayout();
@@ -92,54 +93,55 @@
             this.toolStripSeparator2,
             this.customToolStripMenuItem});
             this.loadExerToolStripMenuItem.Name = "loadExerToolStripMenuItem";
-            this.loadExerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadExerToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.loadExerToolStripMenuItem.Text = "Učitaj vježbu";
             // 
             // easyToolStripMenuItem
             // 
             this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
-            this.easyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.easyToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.easyToolStripMenuItem.Text = "Lagana";
             // 
             // moderateToolStripMenuItem
             // 
             this.moderateToolStripMenuItem.Name = "moderateToolStripMenuItem";
-            this.moderateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moderateToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.moderateToolStripMenuItem.Text = "Srednja";
             // 
             // hardToolStripMenuItem
             // 
             this.hardToolStripMenuItem.Name = "hardToolStripMenuItem";
-            this.hardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hardToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.hardToolStripMenuItem.Text = "Teška";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(110, 6);
             // 
             // customToolStripMenuItem
             // 
             this.customToolStripMenuItem.Name = "customToolStripMenuItem";
-            this.customToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.customToolStripMenuItem.Text = "Vlastita";
+            this.customToolStripMenuItem.Click += new System.EventHandler(this.customToolStripMenuItem_Click);
             // 
             // createExerToolStripMenuItem
             // 
             this.createExerToolStripMenuItem.Name = "createExerToolStripMenuItem";
-            this.createExerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createExerToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.createExerToolStripMenuItem.Text = "Kreiraj vježbu";
             this.createExerToolStripMenuItem.Click += new System.EventHandler(this.createExerToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
             // 
             // izlazToolStripMenuItem
             // 
             this.izlazToolStripMenuItem.Name = "izlazToolStripMenuItem";
-            this.izlazToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.izlazToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.izlazToolStripMenuItem.Text = "Izlaz";
             this.izlazToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -173,6 +175,11 @@
             this.statsToolStripMenuItem.Name = "statsToolStripMenuItem";
             this.statsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.statsToolStripMenuItem.Text = "Statistika";
+            this.statsToolStripMenuItem.Click += new System.EventHandler(this.statsToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // text1
             // 
@@ -197,7 +204,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 361);
+            this.ClientSize = new System.Drawing.Size(734, 362);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.text1);
             this.Controls.Add(this.label1);
@@ -238,6 +245,7 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
 
     }
 }

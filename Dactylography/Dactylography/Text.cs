@@ -63,13 +63,14 @@ namespace Dactylography
         {
             // ako je fake, onda ne broji u statistiku, tj onda nije korisnik stisnuo
             // nego je simulirano
-            // TODO
+
 
             // ako je stisuta prava tipka
             if (words[1].Length == 1 && key.CompareTo(current()) == 0)
             {
                 words[0].Append(words[1][0]);
                 words[1].Clear();
+                
                 if (words[2].Length > 0)
                 {
                     words[1].Append(words[2][0]);

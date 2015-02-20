@@ -6,11 +6,37 @@ using System.Threading.Tasks;
 
 namespace Dactylography
 {
-    [Serializable]
-    public class Exercise
-    {
-        public string text { get; set; }
-        public Statistics highScore { get; set; }
-        public Statistics lastScore { get; set; }
-    }
+        public class Exercise
+        {
+            public string text;
+
+            public Statistics highScore;
+
+            public Statistics lastScore;
+
+            public void updateBest()
+            {
+                if (highScore.length == 0) highScore = lastScore;
+                else
+                {
+                    if (highScore.correct < lastScore.correct) highScore.correct = lastScore.correct;
+                    if (highScore.wpm < lastScore.wpm) highScore.wpm = lastScore.wpm;
+                    if (highScore.wrong == -1 || highScore.wrong > lastScore.wrong) highScore.wrong = lastScore.wrong;
+                    //checking if number of wrongly pressed letters is -1, because that means the exercise was never finished
+                }
+            }
+
+            public string printFormatted()
+            {
+
+                StringBuilder sb = new StringBuilder("Najbolji rezultat:\n");
+                sb.Append(highScore.printFormatted());
+                sb.Append("\nPosljednji rezultat:\n");
+                sb.Append(lastScore.printFormatted());
+                return sb.ToString();
+            }
+
+        }
+
+
 }

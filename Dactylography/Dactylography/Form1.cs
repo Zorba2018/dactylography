@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Web.Script.Serialization;
+
 
 namespace Dactylography
 {
     public partial class Form1 : Form
     {
+
+        public Exercise exercise;
+        public string filePath;
 
         private bool previewKey;
         public bool PreviewKey
@@ -41,6 +47,8 @@ namespace Dactylography
             previewKey = Properties.Settings.Default.previewKey;
             previewFinger = Properties.Settings.Default.previewFinger;
             wait = Properties.Settings.Default.wait;
+
+            exercise = new Exercise();
 
             toolStrip1.ShowItemToolTips = false;
         }
@@ -138,12 +146,35 @@ namespace Dactylography
             String status = text1.keyPressed(key.Text, fake); //tu treba slati fake
             if (status.CompareTo("DONE") == 0)
             {
+                if (!fake) exercise.lastScore.correct++;
+
                 keyboard1.FingerKey = null;
                 MessageBox.Show("Svaka čast!");
-                // TODO statistika
+                
+
+               
+                //TODO preprepared exercises
+                //TODO wpm calculation
+                if (filePath != null) //if the file wasn't just randomly generated
+                {
+                    exercise.updateBest();
+
+                    string json = new JavaScriptSerializer().Serialize(exercise);
+                    try
+                    {
+                        System.IO.File.WriteAllText(filePath, json);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("The exercise result couldn't be saved!");
+                    }
+                    filePath = null;
+                }
+
             }
             else if (status.CompareTo("WRONG") == 0)
             {
+                if (!fake) exercise.lastScore.wrong++;
                 if (Wait == false)
                 {
                     // simuliranje pritiska "prave tipke"
@@ -152,6 +183,8 @@ namespace Dactylography
             }
             else
             {
+                if (!fake) exercise.lastScore.correct++;
+
                 if (previewFinger)
                 {
                     keyboard1.FingerKey = keyboard1.getKey(status).finger;
@@ -207,6 +240,30 @@ namespace Dactylography
         private void Form1_Resize(object sender, EventArgs e)
         {
             text1.Height = ClientSize.Height - text1.Location.Y;
+        }
+
+        private void customToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "JSON Files (.json)|*.json|All Files (*.*)|*.*";
+            openFileDialog1.Multiselect = false;
+            DialogResult userClickedOK = openFileDialog1.ShowDialog();
+
+            if (userClickedOK == DialogResult.OK)
+            {
+                string path = openFileDialog1.FileName;
+                string json = System.IO.File.ReadAllText(path);
+                exercise = (Exercise) new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+
+                //test
+                setText(exercise.text);
+            }
+
+        }
+
+        private void statsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(exercise.printFormatted(), "Statike trenutne vježbe");
         }
 
 

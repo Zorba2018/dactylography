@@ -89,15 +89,33 @@ namespace Dactylography
                 }
             }
 
+            f.exercise = new Exercise();
+            f.exercise.highScore = new Statistics(1);
+            f.exercise.lastScore = new Statistics(1);
+            f.exercise.text = sb.ToString();
+
             if (save)
             {
-                Exercise exer = new Exercise();
-                exer.text = sb.ToString();
-                string json = new JavaScriptSerializer().Serialize(exer);
 
+                string json = new JavaScriptSerializer().Serialize(f.exercise);
+                saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "JSON File|*.json";
+                saveFileDialog1.Title = "Save the generated exercise";
+                DialogResult userClickedOK = saveFileDialog1.ShowDialog();
 
-                MessageBox.Show(json);
-                // TODO save file
+                if (userClickedOK == DialogResult.OK && saveFileDialog1.FileName != "")
+                {
+                    try
+                    {
+                        System.IO.File.WriteAllText(saveFileDialog1.FileName, json);
+                        f.filePath = saveFileDialog1.FileName;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("The exercise couldn't be saved!");
+                    }
+                }
+
             }
 
             f.setText(sb.ToString());
