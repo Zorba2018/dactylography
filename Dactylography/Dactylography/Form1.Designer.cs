@@ -196,6 +196,7 @@
             this.timerLabel.Size = new System.Drawing.Size(13, 13);
             this.timerLabel.TabIndex = 4;
             this.timerLabel.Text = "0";
+            this.timerLabel.Visible = false;
             // 
             // text1
             // 

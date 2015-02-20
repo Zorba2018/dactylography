@@ -79,8 +79,12 @@ namespace Dactylography
         public void ClearForm()
         {
             // mice oznaku iduce tipke
-            keyboard1.getKey(text1.current()).BackColor = SystemColors.Control;
-            keyboard1.getKey(text1.current()).UseVisualStyleBackColor = true;
+            string current = text1.current();
+            if (current != null && current.Length == 1)
+            {
+                keyboard1.getKey(current).BackColor = SystemColors.Control;
+                keyboard1.getKey(current).UseVisualStyleBackColor = true;
+            }
             // mice oznaku prsta
             keyboard1.FingerKey = null;
         }

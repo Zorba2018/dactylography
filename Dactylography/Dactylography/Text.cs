@@ -37,7 +37,7 @@ namespace Dactylography
             get { return exer.text; }
             set
             {
-                if (value == null)
+                if (value == null || value.Length == 0)
                 {
                     return;
                 }
