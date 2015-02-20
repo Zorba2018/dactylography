@@ -308,6 +308,21 @@ namespace Dactylography
             timerLabel.Text = timePassed.ToString();
         }
 
+        private void easyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void moderateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }
