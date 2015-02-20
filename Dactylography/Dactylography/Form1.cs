@@ -57,6 +57,7 @@ namespace Dactylography
         public void startExercise()
         {
             timer1.Enabled = true;
+            timePassed = 0;
 
         }
 
@@ -171,17 +172,35 @@ namespace Dactylography
                 if (filePath != null) //if the file wasn't just randomly generated
                 {
                     exercise.updateBest();
-
                     string json = new JavaScriptSerializer().Serialize(exercise);
-                    try
+
+                    if (filePath == "easy") 
                     {
-                        System.IO.File.WriteAllText(filePath, json);
+                        Properties.Settings.Default.Easy = json;
                     }
-                    catch
+                    else if(filePath == "moderate")
                     {
-                        MessageBox.Show("The exercise result couldn't be saved!");
+                        Properties.Settings.Default.Moderate = json;
+
                     }
-                    filePath = null;
+                    else if (filePath == "hard")
+                    {
+                        Properties.Settings.Default.Hard = json;
+                    }
+                    else
+                    {
+
+                        try
+                        {
+                            System.IO.File.WriteAllText(filePath, json);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("The exercise result couldn't be saved!");
+                        }
+                        filePath = null;
+                    }
+                    Properties.Settings.Default.Save();
                 }
 
             }

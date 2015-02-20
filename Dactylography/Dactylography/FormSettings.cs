@@ -45,6 +45,7 @@ namespace Dactylography
             f.Wait = rbWait.Checked;
             Properties.Settings.Default.wait = f.Wait;
 
+            Properties.Settings.Default.Save();
             f.RefreshForm();
 
             this.Dispose();
