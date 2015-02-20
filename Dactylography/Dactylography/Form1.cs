@@ -58,6 +58,10 @@ namespace Dactylography
         {
             timer1.Enabled = true;
             timePassed = 0;
+
+            ClearForm();
+            text1.Txt = exercise.text;
+            RefreshForm();
         }
 
         public void stopExercise()
@@ -108,8 +112,10 @@ namespace Dactylography
                 }
             }
 
+            ClearForm();
         }
 
+        /*
         public void setText(string txt)
         {
             if (text1.Txt != null)
@@ -119,6 +125,7 @@ namespace Dactylography
             text1.Txt = txt;
             RefreshForm();
         }
+        */
 
         public void ClearForm()
         {
@@ -129,6 +136,7 @@ namespace Dactylography
                 keyboard1.getKey(current).BackColor = SystemColors.Control;
                 keyboard1.getKey(current).UseVisualStyleBackColor = true;
             }
+            text1.Text = "";
             // mice oznaku prsta
             keyboard1.FingerKey = null;
         }
@@ -211,6 +219,7 @@ namespace Dactylography
 
                 keyboard1.FingerKey = null;
                 stopExercise();
+         
             }
             else if (status.CompareTo("WRONG") == 0)
             {
@@ -295,10 +304,8 @@ namespace Dactylography
                 string json = System.IO.File.ReadAllText(path);
                 exercise = (Exercise) new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
 
-                //test
-                setText(exercise.text);
                 startExercise();
-
+//                setText(exercise.text);
             }
 
         }
@@ -321,7 +328,7 @@ namespace Dactylography
             filePath = "easy";
             exercise.lastScore = new Statistics();
             //test
-            setText(exercise.text);
+            //setText(exercise.text);
             startExercise();
 
         }
@@ -334,7 +341,6 @@ namespace Dactylography
             exercise.lastScore = new Statistics();
 
             //test
-            setText(exercise.text);
             startExercise();
 
         }
@@ -347,7 +353,6 @@ namespace Dactylography
             exercise.lastScore = new Statistics();
 
             //test
-            setText(exercise.text);
             startExercise();
         }
 
