@@ -58,12 +58,55 @@ namespace Dactylography
         {
             timer1.Enabled = true;
             timePassed = 0;
-
         }
 
         public void stopExercise()
         {
             timer1.Enabled = false;
+
+            exercise.lastScore.wpm = (double)(60 * exercise.lastScore.correct) / (5 * timePassed); //update wpm
+            exercise.updateBest();
+
+            MessageBox.Show(exercise.printFormatted(), "Svaka čast!\nStatike trenutne vježbe");
+
+
+            if (filePath != null) //if the file wasn't just randomly generated
+            {
+                string json = new JavaScriptSerializer().Serialize(exercise);
+
+                if (filePath == "easy")
+                {
+                    Properties.Settings.Default.Easy = json;
+                    Properties.Settings.Default.Save();
+
+                }
+                else if (filePath == "moderate")
+                {
+                    Properties.Settings.Default.Moderate = json;
+                    Properties.Settings.Default.Save();
+
+
+                }
+                else if (filePath == "hard")
+                {
+                    Properties.Settings.Default.Hard = json;
+                    Properties.Settings.Default.Save();
+
+                }
+                else
+                {
+
+                    try
+                    {
+                        System.IO.File.WriteAllText(filePath, json);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("The exercise result couldn't be saved!");
+                    }
+                    filePath = null;
+                }
+            }
 
         }
 
@@ -162,51 +205,12 @@ namespace Dactylography
             key.UseVisualStyleBackColor = true;
 
             String status = text1.keyPressed(key.Text, fake); //tu treba slati fake
-            if (status.CompareTo("DONE") == 0)
+            if(status.CompareTo("DONE") == 0)
             {
                 if (!fake) exercise.lastScore.correct++;
 
                 keyboard1.FingerKey = null;
-                MessageBox.Show("Svaka čast!");
-                
-
-               
-                //TODO preprepared exercises
-                //TODO wpm calculation
-                if (filePath != null) //if the file wasn't just randomly generated
-                {
-                    exercise.updateBest();
-                    string json = new JavaScriptSerializer().Serialize(exercise);
-
-                    if (filePath == "easy") 
-                    {
-                        Properties.Settings.Default.Easy = json;
-                    }
-                    else if(filePath == "moderate")
-                    {
-                        Properties.Settings.Default.Moderate = json;
-
-                    }
-                    else if (filePath == "hard")
-                    {
-                        Properties.Settings.Default.Hard = json;
-                    }
-                    else
-                    {
-
-                        try
-                        {
-                            System.IO.File.WriteAllText(filePath, json);
-                        }
-                        catch
-                        {
-                            MessageBox.Show("The exercise result couldn't be saved!");
-                        }
-                        filePath = null;
-                    }
-                    Properties.Settings.Default.Save();
-                }
-
+                stopExercise();
             }
             else if (status.CompareTo("WRONG") == 0)
             {
@@ -293,6 +297,8 @@ namespace Dactylography
 
                 //test
                 setText(exercise.text);
+                startExercise();
+
             }
 
         }
@@ -310,17 +316,39 @@ namespace Dactylography
 
         private void easyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            string json = Properties.Settings.Default.Easy;
+            exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+            filePath = "easy";
+            exercise.lastScore = new Statistics();
+            //test
+            setText(exercise.text);
+            startExercise();
+
         }
 
         private void moderateToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string json = Properties.Settings.Default.Moderate;
+            exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+            filePath = "moderate";
+            exercise.lastScore = new Statistics();
+
+            //test
+            setText(exercise.text);
+            startExercise();
 
         }
 
         private void hardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string json = Properties.Settings.Default.Hard;
+            exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+            filePath = "hard";
+            exercise.lastScore = new Statistics();
 
+            //test
+            setText(exercise.text);
+            startExercise();
         }
 
 

@@ -16,8 +16,7 @@ namespace Dactylography
 
             public void updateBest()
             {
-                if (highScore.length == 0) highScore = lastScore;
-                else
+                
                 {
                     if (highScore.correct < lastScore.correct) highScore.correct = lastScore.correct;
                     if (highScore.wpm < lastScore.wpm) highScore.wpm = lastScore.wpm;
@@ -31,7 +30,7 @@ namespace Dactylography
 
                 StringBuilder sb = new StringBuilder("Najbolji rezultat:\n");
                 sb.Append(highScore.printFormatted());
-                sb.Append("\nPosljednji rezultat:\n");
+                sb.Append("\nTrenutni rezultat:\n");
                 sb.Append(lastScore.printFormatted());
                 return sb.ToString();
             }

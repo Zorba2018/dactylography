@@ -119,7 +119,7 @@ namespace Dactylography
             }
 
             f.setText(sb.ToString());
-
+            f.startExercise();
             this.Dispose();
 
         }

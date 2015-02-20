@@ -9,7 +9,6 @@ namespace Dactylography
 {
     public struct Statistics
     {
-        public int length;
         public int correct;
         public int wrong;
         public double wpm;
@@ -22,7 +21,7 @@ namespace Dactylography
 
         public Statistics(int a)
         {
-            length = correct = 0;
+            correct = 0;
             wpm = 0;
             wrong = -1;
             //wrong -1 means that this was never run

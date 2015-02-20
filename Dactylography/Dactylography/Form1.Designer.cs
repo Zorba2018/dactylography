@@ -96,58 +96,58 @@
             this.toolStripSeparator2,
             this.customToolStripMenuItem});
             this.loadExerToolStripMenuItem.Name = "loadExerToolStripMenuItem";
-            this.loadExerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadExerToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.loadExerToolStripMenuItem.Text = "Učitaj vježbu";
             // 
             // easyToolStripMenuItem
             // 
             this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
-            this.easyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.easyToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.easyToolStripMenuItem.Text = "Lagana";
             this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
             // 
             // moderateToolStripMenuItem
             // 
             this.moderateToolStripMenuItem.Name = "moderateToolStripMenuItem";
-            this.moderateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moderateToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.moderateToolStripMenuItem.Text = "Srednja";
             this.moderateToolStripMenuItem.Click += new System.EventHandler(this.moderateToolStripMenuItem_Click);
             // 
             // hardToolStripMenuItem
             // 
             this.hardToolStripMenuItem.Name = "hardToolStripMenuItem";
-            this.hardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hardToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.hardToolStripMenuItem.Text = "Teška";
             this.hardToolStripMenuItem.Click += new System.EventHandler(this.hardToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(110, 6);
             // 
             // customToolStripMenuItem
             // 
             this.customToolStripMenuItem.Name = "customToolStripMenuItem";
-            this.customToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.customToolStripMenuItem.Text = "Vlastita";
             this.customToolStripMenuItem.Click += new System.EventHandler(this.customToolStripMenuItem_Click);
             // 
             // createExerToolStripMenuItem
             // 
             this.createExerToolStripMenuItem.Name = "createExerToolStripMenuItem";
-            this.createExerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createExerToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.createExerToolStripMenuItem.Text = "Kreiraj vježbu";
             this.createExerToolStripMenuItem.Click += new System.EventHandler(this.createExerToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
             // 
             // izlazToolStripMenuItem
             // 
             this.izlazToolStripMenuItem.Name = "izlazToolStripMenuItem";
-            this.izlazToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.izlazToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.izlazToolStripMenuItem.Text = "Izlaz";
             this.izlazToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -189,6 +189,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // timerLabel
@@ -199,7 +200,6 @@
             this.timerLabel.Size = new System.Drawing.Size(13, 13);
             this.timerLabel.TabIndex = 4;
             this.timerLabel.Text = "0";
-            this.timerLabel.Visible = false;
             // 
             // text1
             // 
