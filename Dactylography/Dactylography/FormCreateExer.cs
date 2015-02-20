@@ -118,7 +118,8 @@ namespace Dactylography
 
             }
 
-            f.setText(sb.ToString());
+            f.startExercise();
+//            f.setText(sb.ToString());
 
             this.Dispose();
 

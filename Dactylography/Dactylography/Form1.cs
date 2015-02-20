@@ -59,14 +59,18 @@ namespace Dactylography
             timer1.Enabled = true;
             timePassed = 0;
 
+            ClearForm();
+            text1.Txt = exercise.text;
+            RefreshForm();
         }
 
         public void stopExercise()
         {
             timer1.Enabled = false;
-
+            ClearForm();
         }
 
+        /*
         public void setText(string txt)
         {
             if (text1.Txt != null)
@@ -76,6 +80,7 @@ namespace Dactylography
             text1.Txt = txt;
             RefreshForm();
         }
+        */
 
         public void ClearForm()
         {
@@ -86,6 +91,7 @@ namespace Dactylography
                 keyboard1.getKey(current).BackColor = SystemColors.Control;
                 keyboard1.getKey(current).UseVisualStyleBackColor = true;
             }
+            text1.Text = "";
             // mice oznaku prsta
             keyboard1.FingerKey = null;
         }
@@ -166,7 +172,7 @@ namespace Dactylography
             {
                 if (!fake) exercise.lastScore.correct++;
 
-                keyboard1.FingerKey = null;
+                stopExercise();
                 MessageBox.Show("Svaka čast!");
                 
 
@@ -292,7 +298,8 @@ namespace Dactylography
                 exercise = (Exercise) new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
 
                 //test
-                setText(exercise.text);
+                startExercise();
+//                setText(exercise.text);
             }
 
         }
