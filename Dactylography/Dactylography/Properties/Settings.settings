@@ -11,5 +11,14 @@
     <Setting Name="wait" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="Easy" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{"text":"FFF JJFJ JJF JFFJ FFFJ","highScore":{"length":0,"correct":0,"wrong":-1,"wpm":0},"lastScore":{"length":0,"correct":0,"wrong":-1,"wpm":0}}</Value>
+    </Setting>
+    <Setting Name="Moderate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{"text":"SFČLČFKČAD FASLJČK SJSSJSJD LLALLLK AČČFFJA AJKLFDSAAK ČSDKDSS DSJJDJ JALSLČA JJLJAJ ALSFKSKD SSFLKFČF","highScore":{"length":0,"correct":0,"wrong":-1,"wpm":0},"lastScore":{"length":0,"correct":0,"wrong":-1,"wpm":0}}</Value>
+    </Setting>
+    <Setting Name="Hard" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{"text":"EJWGXWC ĆMSŠGAJE ETMPOQ VĐĐPOPTGTF WTFHČŠALACVJNG BUFLCXSHL KĐBIĆNRŽ ĐNAGSS KQKMXSXNĐ ŽSTFJJOTDMQOTVL YQĐBČS ĐWPBLŽQ NCXĐKTDCUJUŽ ZUCYUKČČĐG NIĆBRLL BOWŽŠPDVĆTEZŠ KECGW XPBĐUJSIŽ JHNGGE XŠOZYM UUĆVLHFKGZ","highScore":{"length":0,"correct":0,"wrong":-1,"wpm":0},"lastScore":{"length":0,"correct":0,"wrong":-1,"wpm":0}}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

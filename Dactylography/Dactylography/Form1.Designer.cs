@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -46,6 +47,8 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.statsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timerLabel = new System.Windows.Forms.Label();
             this.text1 = new Dactylography.Text();
             this.keyboard1 = new Dactylography.Keyboard();
             this.toolStrip1.SuspendLayout();
@@ -161,25 +164,38 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.settingsToolStripMenuItem.Text = "Postavke";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(118, 6);
             // 
             // statsToolStripMenuItem
             // 
             this.statsToolStripMenuItem.Name = "statsToolStripMenuItem";
-            this.statsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statsToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.statsToolStripMenuItem.Text = "Statistika";
             this.statsToolStripMenuItem.Click += new System.EventHandler(this.statsToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timerLabel
+            // 
+            this.timerLabel.AutoSize = true;
+            this.timerLabel.Location = new System.Drawing.Point(347, 12);
+            this.timerLabel.Name = "timerLabel";
+            this.timerLabel.Size = new System.Drawing.Size(13, 13);
+            this.timerLabel.TabIndex = 4;
+            this.timerLabel.Text = "0";
             // 
             // text1
             // 
@@ -193,7 +209,7 @@
             // 
             // keyboard1
             // 
-            this.keyboard1.BackgroundImage = global::Dactylography.Properties.Resources.keyboard;
+            this.keyboard1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("keyboard1.BackgroundImage")));
             this.keyboard1.FingerKey = null;
             this.keyboard1.Location = new System.Drawing.Point(0, 28);
             this.keyboard1.Name = "keyboard1";
@@ -205,6 +221,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 362);
+            this.Controls.Add(this.timerLabel);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.text1);
             this.Controls.Add(this.label1);
@@ -213,7 +230,7 @@
             this.MaximumSize = new System.Drawing.Size(750, 1000);
             this.MinimumSize = new System.Drawing.Size(750, 400);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Daktilograf";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
@@ -246,6 +263,8 @@
         private System.Windows.Forms.ToolStripMenuItem statsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label timerLabel;
 
     }
 }

@@ -58,5 +58,44 @@ namespace Dactylography.Properties {
                 this["wait"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"text\":\"FFF JJFJ JJF JFFJ FFFJ\",\"highScore\":{\"length\":0,\"correct\":0,\"wrong\":-1,\"" +
+            "wpm\":0},\"lastScore\":{\"length\":0,\"correct\":0,\"wrong\":-1,\"wpm\":0}}")]
+        public string Easy {
+            get {
+                return ((string)(this["Easy"]));
+            }
+            set {
+                this["Easy"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"text\":\"SFČLČFKČAD FASLJČK SJSSJSJD LLALLLK AČČFFJA AJKLFDSAAK ČSDKDSS DSJJDJ JA" +
+            "LSLČA JJLJAJ ALSFKSKD SSFLKFČF\",\"highScore\":{\"length\":0,\"correct\":0,\"wrong\":-1,\"" +
+            "wpm\":0},\"lastScore\":{\"length\":0,\"correct\":0,\"wrong\":-1,\"wpm\":0}}")]
+        public string Moderate {
+            get {
+                return ((string)(this["Moderate"]));
+            }
+            set {
+                this["Moderate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"{""text"":""EJWGXWC ĆMSŠGAJE ETMPOQ VĐĐPOPTGTF WTFHČŠALACVJNG BUFLCXSHL KĐBIĆNRŽ ĐNAGSS KQKMXSXNĐ ŽSTFJJOTDMQOTVL YQĐBČS ĐWPBLŽQ NCXĐKTDCUJUŽ ZUCYUKČČĐG NIĆBRLL BOWŽŠPDVĆTEZŠ KECGW XPBĐUJSIŽ JHNGGE XŠOZYM UUĆVLHFKGZ"",""highScore"":{""length"":0,""correct"":0,""wrong"":-1,""wpm"":0},""lastScore"":{""length"":0,""correct"":0,""wrong"":-1,""wpm"":0}}")]
+        public string Hard {
+            get {
+                return ((string)(this["Hard"]));
+            }
+            set {
+                this["Hard"] = value;
+            }
+        }
     }
 }

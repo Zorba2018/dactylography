@@ -15,9 +15,10 @@ namespace Dactylography
 {
     public partial class Form1 : Form
     {
-
+        //for statistics
         public Exercise exercise;
         public string filePath;
+        public int timePassed = 0;
 
         private bool previewKey;
         public bool PreviewKey
@@ -51,6 +52,18 @@ namespace Dactylography
             exercise = new Exercise();
 
             toolStrip1.ShowItemToolTips = false;
+        }
+
+        public void startExercise()
+        {
+            timer1.Enabled = true;
+
+        }
+
+        public void stopExercise()
+        {
+            timer1.Enabled = false;
+
         }
 
         public void setText(string txt)
@@ -264,6 +277,12 @@ namespace Dactylography
         private void statsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(exercise.printFormatted(), "Statike trenutne vježbe");
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timePassed++;
+            timerLabel.Text = timePassed.ToString();
         }
 
 
