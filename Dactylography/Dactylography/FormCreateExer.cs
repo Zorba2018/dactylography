@@ -89,15 +89,16 @@ namespace Dactylography
                 }
             }
 
-            f.exercise = new Exercise();
-            f.exercise.highScore = new Statistics(1);
-            f.exercise.lastScore = new Statistics(1);
-            f.exercise.text = sb.ToString();
+            Text text = (Text) f.Controls["text1"];
+            text.exercise = new Exercise();
+            text.exercise.highScore = new Statistics(1);
+            text.exercise.lastScore = new Statistics(1);
+            text.exercise.text = sb.ToString();
 
             if (save)
             {
 
-                string json = new JavaScriptSerializer().Serialize(f.exercise);
+                string json = new JavaScriptSerializer().Serialize(text.exercise);
                 saveFileDialog1 = new SaveFileDialog();
                 saveFileDialog1.Filter = "JSON File|*.json";
                 saveFileDialog1.Title = "Save the generated exercise";

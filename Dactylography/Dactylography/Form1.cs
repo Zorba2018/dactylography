@@ -16,7 +16,7 @@ namespace Dactylography
     public partial class Form1 : Form
     {
         //for statistics
-        public Exercise exercise;
+       // public Exercise exercise;
         public string filePath;
         public int timePassed = 0;
 
@@ -41,6 +41,10 @@ namespace Dactylography
             set { wait = value; RefreshForm(); }
         }
 
+        private Color exerciseKeyColor = Color.LightSkyBlue;
+        private Color keyToPressColor = Color.Tomato;
+        private Color keyPressedColor = Color.DarkGray;
+
         public Form1()
         {
             InitializeComponent();
@@ -49,7 +53,7 @@ namespace Dactylography
             previewFinger = Properties.Settings.Default.previewFinger;
             wait = Properties.Settings.Default.wait;
 
-            exercise = new Exercise();
+           // exercise = new Exercise();
 
             toolStrip1.ShowItemToolTips = false;
         }
@@ -60,7 +64,21 @@ namespace Dactylography
             timePassed = 0;
 
             ClearForm();
-            text1.Txt = exercise.text;
+            text1.Txt = text1.exercise.text;
+
+            foreach (Key key in keyboard1.keys.Values)
+            {
+                if (text1.exercise.uniqueChars.Contains(key.Text))
+                {
+                    key.BackColor = exerciseKeyColor;
+                }
+                else
+                {
+                    key.BackColor = SystemColors.Control;
+                    key.UseVisualStyleBackColor = true;
+                }
+            }
+
             RefreshForm();
         }
 
@@ -68,15 +86,15 @@ namespace Dactylography
         {
             timer1.Enabled = false;
 
-            exercise.lastScore.wpm = (double)(60 * exercise.lastScore.correct) / (5 * timePassed); //update wpm
-            exercise.updateBest();
+            text1.exercise.lastScore.wpm = (double)(60 * text1.exercise.lastScore.correct) / (5 * timePassed); //update wpm
+            text1.exercise.updateBest();
 
-            MessageBox.Show(exercise.printFormatted(), "Svaka čast!\nStatike trenutne vježbe");
+            MessageBox.Show(text1.exercise.printFormatted(), "Svaka čast!\nStatike trenutne vježbe");
 
 
             if (filePath != null) //if the file wasn't just randomly generated
             {
-                string json = new JavaScriptSerializer().Serialize(exercise);
+                string json = new JavaScriptSerializer().Serialize(text1.exercise);
 
                 if (filePath == "easy")
                 {
@@ -151,7 +169,7 @@ namespace Dactylography
             // koristim zato što se postavke mogu mijenjati i kad nije inicijalizirano
             else if (PreviewKey)
             {
-                keyboard1.getKey(text1.current()).BackColor = Color.LightBlue;
+                keyboard1.getKey(text1.current()).BackColor = keyToPressColor;
             }
             else
             {
@@ -177,7 +195,7 @@ namespace Dactylography
                 Key key = keyboard1.getKey(keyCodeToString(e));
                 if (key != null)
                 {
-                    key.BackColor = Color.DarkGray;
+                    key.BackColor = keyPressedColor;
                 }
             }
         }
@@ -209,13 +227,19 @@ namespace Dactylography
         private void keyUp(Key key, bool fake)
         {
              // vracanje u defaultnu boju ako ne prelazimo preko tipke
-            key.BackColor = SystemColors.Control;            
-            key.UseVisualStyleBackColor = true;
-
+            if (text1.exercise.uniqueChars.Contains(key.Text))
+            {
+                key.BackColor = exerciseKeyColor;
+            }
+            else
+            {
+                key.BackColor = SystemColors.Control;
+                key.UseVisualStyleBackColor = true;
+            }
             String status = text1.keyPressed(key.Text, fake); //tu treba slati fake
             if(status.CompareTo("DONE") == 0)
             {
-                if (!fake) exercise.lastScore.correct++;
+                if (!fake) text1.exercise.lastScore.correct++;
 
                 keyboard1.FingerKey = null;
                 stopExercise();
@@ -223,7 +247,10 @@ namespace Dactylography
             }
             else if (status.CompareTo("WRONG") == 0)
             {
-                if (!fake) exercise.lastScore.wrong++;
+                if (!fake)
+                {
+                    text1.exercise.lastScore.wrong++;
+                }
                 if (Wait == false)
                 {
                     // simuliranje pritiska "prave tipke"
@@ -232,7 +259,7 @@ namespace Dactylography
             }
             else
             {
-                if (!fake) exercise.lastScore.correct++;
+                if (!fake) text1.exercise.lastScore.correct++;
 
                 if (previewFinger)
                 {
@@ -240,7 +267,7 @@ namespace Dactylography
                 }
                 if (PreviewKey)
                 {
-                    keyboard1.getKey(status).BackColor = Color.LightBlue;
+                    keyboard1.getKey(status).BackColor = keyToPressColor;
                 }
             }
         }
@@ -302,17 +329,16 @@ namespace Dactylography
             {
                 string path = openFileDialog1.FileName;
                 string json = System.IO.File.ReadAllText(path);
-                exercise = (Exercise) new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+                text1.exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
 
                 startExercise();
-//                setText(exercise.text);
             }
 
         }
 
         private void statsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(exercise.printFormatted(), "Statike trenutne vježbe");
+            MessageBox.Show(text1.exercise.printFormatted(), "Statike trenutne vježbe");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -324,9 +350,9 @@ namespace Dactylography
         private void easyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string json = Properties.Settings.Default.Easy;
-            exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+            text1.exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
             filePath = "easy";
-            exercise.lastScore = new Statistics();
+            text1.exercise.lastScore = new Statistics();
             //test
             //setText(exercise.text);
             startExercise();
@@ -336,9 +362,9 @@ namespace Dactylography
         private void moderateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string json = Properties.Settings.Default.Moderate;
-            exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+            text1.exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
             filePath = "moderate";
-            exercise.lastScore = new Statistics();
+            text1.exercise.lastScore = new Statistics();
 
             //test
             startExercise();
@@ -348,9 +374,9 @@ namespace Dactylography
         private void hardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string json = Properties.Settings.Default.Hard;
-            exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+            text1.exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
             filePath = "hard";
-            exercise.lastScore = new Statistics();
+            text1.exercise.lastScore = new Statistics();
 
             //test
             startExercise();

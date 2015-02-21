@@ -13,7 +13,7 @@ namespace Dactylography
     public partial class Text : RichTextBox
     {
         /* text koji terba natipkati */
-        private static Exercise exer = new Exercise();
+        public Exercise exercise = new Exercise();
         //private string text;
 
         private Font font = new Font(FontFamily.GenericMonospace, 16.0f, FontStyle.Bold);
@@ -29,22 +29,34 @@ namespace Dactylography
         {
 		    Color.LightGray,
 		    Color.Black,
-		    Color.DarkGray
+		    Color.DarkGray,
+            Color.LightCoral
 	    };
+
+        private HashSet<int> wrongIndices = new HashSet<int>();
 
         public string Txt
         {
-            get { return exer.text; }
+            get { return exercise.text; }
             set
             {
                 if (value == null || value.Length == 0)
                 {
                     return;
                 }
-                exer.text = value.ToUpper();
+                exercise.text = value.ToUpper();
+
+                exercise.uniqueChars = new HashSet<String>();
+                foreach (char c in exercise.text)
+                {
+                    exercise.uniqueChars.Add(c.ToString());
+                }
+
+                wrongIndices.Clear();
+
                 words[0] = new StringBuilder();
                 words[1] = new StringBuilder();
-                words[2] = new StringBuilder(exer.text);
+                words[2] = new StringBuilder(exercise.text);
 
                 words[1].Append(words[2][0]);
                 words[2].Remove(0, 1);
@@ -52,7 +64,7 @@ namespace Dactylography
 
             }
         }
-	    
+
         public Text()
         {
             InitializeComponent();
@@ -70,7 +82,7 @@ namespace Dactylography
             {
                 words[0].Append(words[1][0]);
                 words[1].Clear();
-                
+
                 if (words[2].Length > 0)
                 {
                     words[1].Append(words[2][0]);
@@ -84,6 +96,7 @@ namespace Dactylography
                     return "DONE";
                 }
             }
+            wrongIndices.Add(words[0].Length);
             return "WRONG";
         }
 
@@ -97,22 +110,29 @@ namespace Dactylography
         public void printText()
         {
             this.Clear();
-            for (int i = 0; i < this.words.Length; i++)
+
+            // previous word
+            for (int j = 0; j < this.words[0].Length; j++)
+            {
+                this.SelectionColor = (wrongIndices.Contains(j) ? colors[3] : colors[0]);
+                this.SelectionFont = font;
+                this.AppendText(this.words[0][j].ToString());
+            }
+
+            // current and next word
+            for (int i = 1; i < this.words.Length; i++)
             {
                 StringBuilder word = this.words[i];
-                Color color = this.colors[i];
+                this.SelectionColor = this.colors[i];
+                if (i == 1)
                 {
-                    this.SelectionColor = color;
-                    if (i == 1)
-                    {
-                        this.SelectionFont = underlined_font;
-                    }
-                    else
-                    {
-                        this.SelectionFont = font;
-                    }
-                    this.AppendText(word.ToString());
+                    this.SelectionFont = underlined_font;
                 }
+                else
+                {
+                    this.SelectionFont = font;
+                }
+                this.AppendText(word.ToString());
             }
         }
 

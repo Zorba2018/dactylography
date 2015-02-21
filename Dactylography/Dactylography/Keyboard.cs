@@ -13,7 +13,7 @@ namespace Dactylography
     public partial class Keyboard : UserControl
     {
 
-        private Dictionary<string, Key> keys = new Dictionary<string, Key>();
+        public Dictionary<string, Key> keys = new Dictionary<string, Key>();
 
         private string[][] alphabet = new string[4][];
 
@@ -117,7 +117,7 @@ namespace Dactylography
             {
                 System.Drawing.Graphics graphicsObj = this.CreateGraphics();
                 Rectangle myRectangle = new Rectangle(fingerKey.Point.X - mark_radius, fingerKey.Point.Y - mark_radius, 2 * mark_radius, 2 * mark_radius);
-                graphicsObj.DrawEllipse(new Pen(System.Drawing.Color.Red, 2), myRectangle);
+                graphicsObj.DrawEllipse(new Pen(System.Drawing.Color.Tomato, 2), myRectangle);
             }
         }
 
