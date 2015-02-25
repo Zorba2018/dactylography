@@ -97,5 +97,17 @@ namespace Dactylography.Properties {
                 this["Hard"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double bestWpm {
+            get {
+                return ((double)(this["bestWpm"]));
+            }
+            set {
+                this["bestWpm"] = value;
+            }
+        }
     }
 }

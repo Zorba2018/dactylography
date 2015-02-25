@@ -14,6 +14,8 @@ namespace Dactylography
     {
         /* text koji terba natipkati */
         public Exercise exercise = new Exercise();
+        //last result before exercise starts
+        public Statistics realLast = new Statistics(1);
         //private string text;
 
         private Font font = new Font(FontFamily.GenericMonospace, 16.0f, FontStyle.Bold);

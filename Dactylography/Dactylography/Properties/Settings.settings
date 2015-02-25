@@ -20,5 +20,8 @@
     <Setting Name="Hard" Type="System.String" Scope="User">
       <Value Profile="(Default)">{"text":"EJWGXWC ĆMSŠGAJE ETMPOQ VĐĐPOPTGTF WTFHČŠALACVJNG BUFLCXSHL KĐBIĆNRŽ ĐNAGSS KQKMXSXNĐ ŽSTFJJOTDMQOTVL YQĐBČS ĐWPBLŽQ NCXĐKTDCUJUŽ ZUCYUKČČĐG NIĆBRLL BOWŽŠPDVĆTEZŠ KECGW XPBĐUJSIŽ JHNGGE XŠOZYM UUĆVLHFKGZ","highScore":{"length":0,"correct":0,"wrong":-1,"wpm":0},"lastScore":{"length":0,"correct":0,"wrong":-1,"wpm":0}}</Value>
     </Setting>
+    <Setting Name="bestWpm" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -19,6 +19,7 @@ namespace Dactylography
        // public Exercise exercise;
         public string filePath;
         public int timePassed = 0;
+        public StatForm stats;
 
         private bool previewKey;
         public bool PreviewKey
@@ -89,9 +90,6 @@ namespace Dactylography
             text1.exercise.lastScore.wpm = (double)(60 * text1.exercise.lastScore.correct) / (5 * timePassed); //update wpm
             text1.exercise.updateBest();
 
-            MessageBox.Show(text1.exercise.printFormatted(), "Svaka čast!\nStatike trenutne vježbe");
-
-
             if (filePath != null) //if the file wasn't just randomly generated
             {
                 string json = new JavaScriptSerializer().Serialize(text1.exercise);
@@ -129,6 +127,10 @@ namespace Dactylography
                     filePath = null;
                 }
             }
+            if (text1.exercise.highScore.wpm > Properties.Settings.Default.bestWpm)
+                Properties.Settings.Default.bestWpm = text1.exercise.highScore.wpm;
+
+            MessageBox.Show(text1.exercise.printFormatted(), "Svaka čast!\n Statistike trenutne vježbe");
 
             ClearForm();
         }
@@ -331,6 +333,10 @@ namespace Dactylography
                 string json = System.IO.File.ReadAllText(path);
 
                 text1.exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+                //save the realLast score
+                text1.realLast = text1.exercise.lastScore;
+                //and then initialize the new one for viewing
+                text1.exercise.lastScore = new Statistics(1);
 
                 startExercise();
             }
@@ -339,7 +345,9 @@ namespace Dactylography
 
         private void statsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(text1.exercise.printFormatted(), "Statike trenutne vježbe");
+            //MessageBox.Show(text1.exercise.printFormatted(), "Statike trenutne vježbe");
+            stats = new StatForm(this);
+            stats.Show();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -352,6 +360,8 @@ namespace Dactylography
         {
             string json = Properties.Settings.Default.Easy;
             text1.exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+            text1.realLast = text1.exercise.lastScore;
+
             filePath = "easy";
             text1.exercise.lastScore = new Statistics();
             //test
@@ -364,6 +374,8 @@ namespace Dactylography
         {
             string json = Properties.Settings.Default.Moderate;
             text1.exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+            text1.realLast = text1.exercise.lastScore;
+
             filePath = "moderate";
             text1.exercise.lastScore = new Statistics();
 
@@ -376,6 +388,8 @@ namespace Dactylography
         {
             string json = Properties.Settings.Default.Hard;
             text1.exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
+            text1.realLast = text1.exercise.lastScore;
+
             filePath = "hard";
             text1.exercise.lastScore = new Statistics();
 

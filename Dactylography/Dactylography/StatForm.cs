@@ -17,6 +17,11 @@ namespace Dactylography
         {
             f = a;
             InitializeComponent();
+
+            label1.Text += "\n" + f.text1.exercise.highScore.printFormatted();
+            label2.Text += "\n" + f.text1.realLast.printFormatted();
+            label3.Text += "\n" + Properties.Settings.Default.bestWpm;
+
         }
     }
 }

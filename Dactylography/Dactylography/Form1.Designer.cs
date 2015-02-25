@@ -250,7 +250,7 @@
 
         private Keyboard keyboard1;
         private System.Windows.Forms.Label label1;
-        private Text text1;
+        public Text text1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem loadExerToolStripMenuItem;
