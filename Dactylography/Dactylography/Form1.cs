@@ -129,6 +129,13 @@ namespace Dactylography
             }
             if (text1.exercise.highScore.wpm > Properties.Settings.Default.bestWpm)
                 Properties.Settings.Default.bestWpm = text1.exercise.highScore.wpm;
+            
+            foreach (Key key in keyboard1.keys.Values)
+            {
+                key.BackColor = SystemColors.Control;
+                key.UseVisualStyleBackColor = true;                
+            }
+
 
             MessageBox.Show(text1.exercise.printFormatted(), "Svaka čast!\n Statistike trenutne vježbe");
 
