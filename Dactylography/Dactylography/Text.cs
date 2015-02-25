@@ -19,6 +19,9 @@ namespace Dactylography
         private Font font = new Font(FontFamily.GenericMonospace, 16.0f, FontStyle.Bold);
         private Font underlined_font = new Font(FontFamily.GenericMonospace, 16.0f, FontStyle.Bold | FontStyle.Underline);
 
+        //it must be here instead
+        public HashSet<String> uniqueChars;
+
         /* words[0] - pretipkani dio teksta
          * words[1] - slovo koje treba pritisniti
          * words[2] - dio teksta koji tek treba natipkati */
@@ -46,10 +49,10 @@ namespace Dactylography
                 }
                 exercise.text = value.ToUpper();
 
-                exercise.uniqueChars = new HashSet<String>();
+                uniqueChars = new HashSet<String>();
                 foreach (char c in exercise.text)
                 {
-                    exercise.uniqueChars.Add(c.ToString());
+                    uniqueChars.Add(c.ToString());
                 }
 
                 wrongIndices.Clear();

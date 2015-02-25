@@ -68,7 +68,7 @@ namespace Dactylography
 
             foreach (Key key in keyboard1.keys.Values)
             {
-                if (text1.exercise.uniqueChars.Contains(key.Text))
+                if (text1.uniqueChars.Contains(key.Text))
                 {
                     key.BackColor = exerciseKeyColor;
                 }
@@ -227,7 +227,7 @@ namespace Dactylography
         private void keyUp(Key key, bool fake)
         {
              // vracanje u defaultnu boju ako ne prelazimo preko tipke
-            if (text1.exercise.uniqueChars.Contains(key.Text))
+            if (text1.uniqueChars != null && text1.uniqueChars.Contains(key.Text))
             {
                 key.BackColor = exerciseKeyColor;
             }
@@ -329,6 +329,7 @@ namespace Dactylography
             {
                 string path = openFileDialog1.FileName;
                 string json = System.IO.File.ReadAllText(path);
+
                 text1.exercise = (Exercise)new JavaScriptSerializer().Deserialize(json, typeof(Exercise));
 
                 startExercise();

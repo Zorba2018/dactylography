@@ -14,7 +14,7 @@ namespace Dactylography
 
             public Statistics lastScore;
 
-            public HashSet<String> uniqueChars;
+            //public HashSet<String> uniqueChars; this cannot be here because of reasons
 
             public void updateBest()
             {
